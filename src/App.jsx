@@ -13,7 +13,6 @@ import { SiMongodb, SiExpress, SiJavascript, SiTailwindcss, SiCplusplus, SiGit }
 const EMAIL = "56340@students.riphah.edu.pk";
 const GITHUB = "https://github.com/MalikUsama804";
 const LINKEDIN = "https://www.linkedin.com/in/usama-bin-ahmed-427ba12a6/";
-// Opens Gmail compose in the browser (not the Windows Mail / Outlook app)
 const GMAIL = `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}&su=${encodeURIComponent("Hello Usama")}`;
 
 const ACCENT_TEXT = "text-indigo-600 dark:text-indigo-400";
@@ -62,7 +61,6 @@ function Counter({ to, suffix = "" }) {
   return <span ref={ref}>{val}{suffix}</span>;
 }
 
-// 3D tilt card. If `href` is given, the WHOLE card becomes a link.
 function TiltCard({ children, className = "", href }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -92,7 +90,7 @@ function SectionTitle({ tag, title }) {
   return (
     <div className="mb-10">
       <p className={`${ACCENT_TEXT} font-mono text-sm mb-2`}>{tag}</p>
-      <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">{title}</h2>
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">{title}</h2>
       <div className={`mt-4 h-1 w-16 rounded-full ${GRAD_BG}`} />
     </div>
   );
@@ -110,7 +108,6 @@ export default function App() {
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 28 });
 
-  // spotlight lives inside the hero only
   const mx = useMotionValue(-500);
   const my = useMotionValue(-500);
   const spotlight = useMotionTemplate`radial-gradient(460px circle at ${mx}px ${my}px, rgba(99,102,241,0.18), transparent 70%)`;
@@ -158,7 +155,6 @@ export default function App() {
     },
   ];
 
-  // color = for light/dark page sections, mcolor = for the always-dark top strip
   const skills = [
     { icon: <FaReact />, name: "React", color: "text-cyan-500", mcolor: "text-cyan-400" },
     { icon: <FaNodeJs />, name: "Node.js", color: "text-green-600 dark:text-green-400", mcolor: "text-green-400" },
@@ -210,15 +206,15 @@ export default function App() {
       {/* Scroll progress */}
       <motion.div style={{ scaleX: progress }} className={`fixed top-0 left-0 right-0 h-[3px] origin-left z-[60] ${GRAD_BG}`} />
 
-      {/* NAVBAR — same dark look in day & night */}
+      {/* NAVBAR */}
       <motion.nav
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
         className="fixed top-[3px] w-full bg-[#070a14]/80 text-white backdrop-blur-xl z-50 border-b border-white/10"
       >
-        <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
-          <a href="#" className="font-extrabold text-xl tracking-tight">
+        <div className="max-w-6xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3 sm:py-4">
+          <a href="#" className="font-extrabold text-base sm:text-xl tracking-tight truncate">
             Usama <span className="text-indigo-400">Bin Ahmed</span>
           </a>
           <div className="hidden md:flex gap-8 text-sm font-medium text-slate-300">
@@ -232,7 +228,7 @@ export default function App() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setDark(!dark)}
-              className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 transition"
+              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-white/20 transition"
               aria-label="Toggle theme"
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -248,14 +244,11 @@ export default function App() {
                 </motion.span>
               </AnimatePresence>
             </button>
-            <a href={GMAIL} target="_blank" rel="noreferrer" className={`hidden md:inline-block text-sm px-5 py-2 ${BTN} hover:scale-105`}>
-              Hire Me
-            </a>
           </div>
         </div>
       </motion.nav>
 
-      {/* TOP BLOCK (hero + skills strip): identical in day & night */}
+      {/* TOP BLOCK (hero + skills strip) */}
       <header className="relative bg-[#070a14] text-white overflow-hidden" onMouseMove={onHeroMove}>
         <div
           className="absolute inset-0 opacity-[0.14]"
@@ -266,12 +259,12 @@ export default function App() {
             WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
           }}
         />
-        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-[130px] bg-indigo-500/25" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-[130px] bg-cyan-500/10" />
+        <div className="absolute top-0 left-1/4 w-72 sm:w-96 h-72 sm:h-96 rounded-full blur-[130px] bg-indigo-500/25" />
+        <div className="absolute bottom-0 right-1/4 w-72 sm:w-96 h-72 sm:h-96 rounded-full blur-[130px] bg-cyan-500/10" />
         <motion.div className="pointer-events-none absolute inset-0 hidden md:block" style={{ background: spotlight }} />
 
-        <section className="relative min-h-screen flex items-center px-6 pt-28 pb-12">
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center w-full">
+        <section className="relative min-h-screen flex items-center px-4 sm:px-6 pt-24 sm:pt-28 pb-12 overflow-hidden">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-14 items-center w-full">
             <motion.div initial="hidden" animate="show" variants={fadeUp}>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-medium mb-6">
                 <span className="relative flex w-2 h-2">
@@ -280,31 +273,31 @@ export default function App() {
                 </span>
                 Available for opportunities
               </div>
-              <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.05] mb-5 tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-[1.05] mb-5 tracking-tight">
                 Hi, I'm <br />
                 <span className={`grad-anim ${GRAD_TEXT_HERO}`}>Usama Bin Ahmed</span>
               </h1>
-              <p className="text-xl md:text-2xl font-mono text-slate-200 mb-4 h-8">
+              <p className="text-base sm:text-xl md:text-2xl font-mono text-slate-200 mb-4 h-8 sm:h-9 whitespace-nowrap overflow-hidden">
                 <span className="text-indigo-400">&gt; </span>
                 {role}
                 <span className="caret ml-0.5 text-indigo-400">|</span>
               </p>
-              <p className="text-slate-400 mb-8 max-w-md leading-relaxed">
+              <p className="text-slate-400 mb-8 max-w-md leading-relaxed text-sm sm:text-base">
                 A dedicated software engineer with a strong passion for technology.
                 I enjoy learning and creating innovative solutions.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }} href="#projects" className={`group px-7 py-3.5 flex items-center gap-2 ${BTN}`}>
+              <div className="flex flex-wrap gap-3 sm:gap-4">
+                <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }} href="#projects" className={`group px-6 sm:px-7 py-3 sm:py-3.5 flex items-center gap-2 text-sm sm:text-base ${BTN}`}>
                   View My Work <span className="group-hover:translate-x-1 transition">→</span>
                 </motion.a>
                 <motion.a
                   whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }} href="#contact"
-                  className="border border-white/20 hover:border-indigo-400 hover:text-indigo-300 px-7 py-3.5 rounded-full font-medium transition flex items-center gap-2"
+                  className="border border-white/20 hover:border-indigo-400 hover:text-indigo-300 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-medium transition flex items-center gap-2 text-sm sm:text-base"
                 >
                   <FaEnvelope /> Contact Me
                 </motion.a>
               </div>
-              <div className="flex gap-3 mt-8 text-xl text-slate-400">
+              <div className="flex gap-3 mt-8 text-lg sm:text-xl text-slate-400">
                 {[
                   { href: GITHUB, icon: <FaGithub />, label: "GitHub" },
                   { href: LINKEDIN, icon: <FaLinkedin />, label: "LinkedIn" },
@@ -327,9 +320,9 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex justify-center"
             >
-              <div className="relative w-72 sm:w-80">
+              <div className="relative w-60 sm:w-72 md:w-80">
                 <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-br from-indigo-500/35 to-sky-400/25 blur-3xl" />
-                <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-[2rem] border-2 border-indigo-400/40" />
+                <div className="absolute inset-0 translate-x-3 sm:translate-x-4 translate-y-3 sm:translate-y-4 rounded-[2rem] border-2 border-indigo-400/40" />
 
                 <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-black/40 ring-1 ring-white/15 bg-gradient-to-b from-indigo-100 via-sky-100 to-slate-100">
                   {!imgError ? (
@@ -341,15 +334,15 @@ export default function App() {
                     />
                   ) : (
                     <div className="w-full h-full flex flex-col items-center justify-center">
-                      <span className={`text-7xl font-bold ${GRAD_TEXT}`}>UB</span>
+                      <span className={`text-6xl sm:text-7xl font-bold ${GRAD_TEXT}`}>UB</span>
                       <span className="text-xs text-slate-500 mt-2">Add profile.png to /public</span>
                     </div>
                   )}
-                  <div className="absolute bottom-3 left-3 right-3 rounded-xl bg-white/85 backdrop-blur-md px-4 py-2.5 shadow-lg flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-600 to-sky-500 text-white flex items-center justify-center text-sm"><FaCode /></span>
+                  <div className="absolute bottom-3 left-3 right-3 rounded-xl bg-white/85 backdrop-blur-md px-3 sm:px-4 py-2 sm:py-2.5 shadow-lg flex items-center gap-3">
+                    <span className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-gradient-to-br from-indigo-600 to-sky-500 text-white flex items-center justify-center text-xs sm:text-sm"><FaCode /></span>
                     <div className="leading-tight">
-                      <p className="text-sm font-bold text-slate-900">Usama Bin Ahmed</p>
-                      <p className="text-[11px] text-slate-600">Software Engineer</p>
+                      <p className="text-xs sm:text-sm font-bold text-slate-900">Usama Bin Ahmed</p>
+                      <p className="text-[10px] sm:text-[11px] text-slate-600">Software Engineer</p>
                     </div>
                   </div>
                 </div>
@@ -359,7 +352,7 @@ export default function App() {
                     key={i}
                     animate={{ y: [0, -10, 0] }}
                     transition={{ repeat: Infinity, duration: 3.5, delay: f.d, ease: "easeInOut" }}
-                    className={`absolute ${f.cls} w-12 h-12 rounded-2xl bg-slate-900 border border-white/10 shadow-xl flex items-center justify-center text-2xl`}
+                    className={`hidden sm:flex absolute ${f.cls} w-12 h-12 rounded-2xl bg-slate-900 border border-white/10 shadow-xl items-center justify-center text-2xl`}
                   >
                     {f.icon}
                   </motion.div>
@@ -370,11 +363,11 @@ export default function App() {
         </section>
 
         {/* skills strip */}
-        <div className="relative py-5 border-t border-white/10 bg-white/[0.03] overflow-hidden">
-          <div className="marquee flex w-max gap-12 text-slate-300">
+        <div className="relative py-4 sm:py-5 border-t border-white/10 bg-white/[0.03] overflow-hidden">
+          <div className="marquee flex w-max gap-8 sm:gap-12 text-slate-300">
             {[...skills, ...skills].map((s, i) => (
-              <div key={i} className="flex items-center gap-3 text-lg font-semibold whitespace-nowrap">
-                <span className={`text-2xl ${s.mcolor}`}>{s.icon}</span>
+              <div key={i} className="flex items-center gap-2 sm:gap-3 text-base sm:text-lg font-semibold whitespace-nowrap">
+                <span className={`text-xl sm:text-2xl ${s.mcolor}`}>{s.icon}</span>
                 {s.name}
               </div>
             ))}
@@ -382,31 +375,31 @@ export default function App() {
         </div>
       </header>
 
-      {/* Dark-mode ambient glow for the rest of the page */}
+      {/* Dark-mode ambient glow */}
       <div className="fixed inset-0 -z-10 hidden dark:block pointer-events-none">
         <div className="absolute top-1/3 left-0 w-96 h-96 rounded-full blur-[140px] bg-indigo-500/10" />
         <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-[140px] bg-cyan-500/10" />
       </div>
 
       {/* ABOUT */}
-      <section id="about" className="relative max-w-5xl mx-auto px-6 py-24">
+      <section id="about" className="relative max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-24">
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
           <SectionTitle tag="01. ABOUT ME" title="Who I Am" />
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="md:col-span-2 text-slate-600 dark:text-slate-400 leading-relaxed space-y-4 text-lg">
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+            <div className="md:col-span-2 text-slate-600 dark:text-slate-400 leading-relaxed space-y-4 text-base sm:text-lg">
               <p>
-                 I am a dedicated software engineer with a strong passion for technology.
-                 I work with the MERN stack (MongoDB, Express, React, Node.js) and enjoy
-                 building innovative solutions.
+                I am a dedicated software engineer with a strong passion for technology.
+                I work with the MERN stack (MongoDB, Express, React, Node.js) and enjoy
+                building innovative solutions.
               </p>
-               <p>
-                 I am a student at Riphah University, and continuous learning is my priority.
-                 Exploring new technologies and solving real-world problems is my passion.
+              <p>
+                I am a student at Riphah University, and continuous learning is my priority.
+                Exploring new technologies and solving real-world problems is my passion.
               </p>
               <div className="flex items-center gap-2 text-slate-800 dark:text-slate-300 pt-2 text-base">
                 <FaMapMarkerAlt className={ACCENT_TEXT} /> Pakistan
               </div>
-              <div className="grid grid-cols-3 gap-4 pt-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6">
                 {stats.map((s) => (
                   <div key={s.label} className={`${CARD} p-4 text-center`}>
                     <div className={`text-3xl md:text-4xl font-extrabold ${GRAD_TEXT}`}>
@@ -424,7 +417,7 @@ export default function App() {
                 <li><span className={`font-semibold ${ACCENT_TEXT}`}>Degree:</span> Software Engineering</li>
                 <li>
                   <span className={`font-semibold ${ACCENT_TEXT}`}>Email:</span>{" "}
-                  <a href={GMAIL} target="_blank" rel="noreferrer" className="hover:text-indigo-600 dark:hover:text-indigo-400 underline-offset-2 hover:underline">{EMAIL}</a>
+                  <a href={GMAIL} target="_blank" rel="noreferrer" className="hover:text-indigo-600 dark:hover:text-indigo-400 underline-offset-2 hover:underline break-all">{EMAIL}</a>
                 </li>
                 <li><span className={`font-semibold ${ACCENT_TEXT}`}>Focus:</span> MERN Stack</li>
               </ul>
@@ -434,15 +427,15 @@ export default function App() {
       </section>
 
       {/* WHAT I DO */}
-      <section className="relative max-w-6xl mx-auto px-6 pb-24">
-        <div className="grid md:grid-cols-3 gap-6">
+      <section className="relative max-w-6xl mx-auto px-4 sm:px-6 pb-20 sm:pb-24">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
           {whatIDo.map((w, i) => (
             <motion.div key={w.title} custom={i} initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
-              <TiltCard className={`${CARD} ${CARD_HOVER} p-7 h-full group transition`}>
-                <div className={`w-14 h-14 rounded-2xl ${GRAD_BG} text-white text-2xl flex items-center justify-center mb-5 shadow-lg shadow-indigo-500/30 group-hover:rotate-6 transition`}>
+              <TiltCard className={`${CARD} ${CARD_HOVER} p-6 sm:p-7 h-full group transition`}>
+                <div className={`w-12 sm:w-14 h-12 sm:h-14 rounded-2xl ${GRAD_BG} text-white text-xl sm:text-2xl flex items-center justify-center mb-5 shadow-lg shadow-indigo-500/30 group-hover:rotate-6 transition`}>
                   {w.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white">{w.title}</h3>
+                <h3 className="text-lg sm:text-xl font-bold mb-2 text-slate-900 dark:text-white">{w.title}</h3>
                 <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{w.text}</p>
               </TiltCard>
             </motion.div>
@@ -452,17 +445,17 @@ export default function App() {
 
       {/* SKILLS */}
       <div className="bg-white dark:bg-white/[0.02] border-y border-slate-200 dark:border-white/5">
-        <section id="skills" className="relative max-w-5xl mx-auto px-6 py-24">
+        <section id="skills" className="relative max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-24">
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
             <SectionTitle tag="02. SKILLS" title="Tech Stack" />
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
               {skills.map((s, i) => (
                 <motion.div
                   key={s.name} custom={i} variants={fadeUp} whileHover={{ y: -6 }}
-                  className={`group ${CARD} ${CARD_HOVER} p-6 flex flex-col items-center gap-3 transition cursor-default`}
+                  className={`group ${CARD} ${CARD_HOVER} p-4 sm:p-6 flex flex-col items-center gap-3 transition cursor-default`}
                 >
-                  <span className={`text-5xl ${s.color} group-hover:scale-110 transition duration-300`}>{s.icon}</span>
-                  <span className="text-sm font-medium text-slate-800 dark:text-slate-300">{s.name}</span>
+                  <span className={`text-4xl sm:text-5xl ${s.color} group-hover:scale-110 transition duration-300`}>{s.icon}</span>
+                  <span className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-300 text-center">{s.name}</span>
                 </motion.div>
               ))}
             </div>
@@ -471,20 +464,19 @@ export default function App() {
       </div>
 
       {/* PROJECTS */}
-      <section id="projects" className="relative max-w-6xl mx-auto px-6 py-24">
+      <section id="projects" className="relative max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-24">
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
           <SectionTitle tag="03. PROJECTS" title="Things I've Built" />
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {projects.map((p, i) => (
               <motion.div key={p.title} custom={i} variants={fadeUp} className="h-full">
-                {/* whole card is the link (only when the project has one) */}
                 <TiltCard
                   href={p.link || undefined}
-                  className={`group relative ${CARD} ${p.link ? `${CARD_HOVER} cursor-pointer` : "cursor-default"} p-6 flex flex-col h-full transition overflow-hidden`}
+                  className={`group relative ${CARD} ${p.link ? `${CARD_HOVER} cursor-pointer` : "cursor-default"} p-5 sm:p-6 flex flex-col h-full transition overflow-hidden`}
                 >
                   <div className="absolute -top-16 -right-16 w-40 h-40 rounded-full bg-indigo-400/20 dark:bg-indigo-500/20 blur-2xl group-hover:scale-150 transition duration-500" />
                   <div className="relative flex justify-between items-start mb-4">
-                    <div className={`w-12 h-12 rounded-xl bg-indigo-500/10 ${ACCENT_TEXT} text-2xl flex items-center justify-center`}>
+                    <div className={`w-11 sm:w-12 h-11 sm:h-12 rounded-xl bg-indigo-500/10 ${ACCENT_TEXT} text-xl sm:text-2xl flex items-center justify-center`}>
                       {p.icon || <FaCode />}
                     </div>
                     <div className="flex items-center gap-3">
@@ -496,7 +488,7 @@ export default function App() {
                       {p.link && <FaExternalLinkAlt className="text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition" />}
                     </div>
                   </div>
-                  <h3 className={`relative text-lg font-bold mb-2 text-slate-900 dark:text-white ${p.link ? "group-hover:text-indigo-600 dark:group-hover:text-indigo-400" : ""} transition`}>{p.title}</h3>
+                  <h3 className={`relative text-base sm:text-lg font-bold mb-2 text-slate-900 dark:text-white ${p.link ? "group-hover:text-indigo-600 dark:group-hover:text-indigo-400" : ""} transition`}>{p.title}</h3>
                   <p className="relative text-slate-600 dark:text-slate-400 text-sm mb-4 flex-grow leading-relaxed">{p.desc}</p>
                   <div className="relative flex flex-wrap gap-2 mt-auto">
                     {p.tech.map((t) => (
@@ -512,32 +504,31 @@ export default function App() {
 
       {/* CONTACT */}
       <div className="bg-white dark:bg-white/[0.02] border-t border-slate-200 dark:border-white/5">
-        <section id="contact" className="relative max-w-3xl mx-auto px-6 py-24 text-center">
+        <section id="contact" className="relative max-w-3xl mx-auto px-4 sm:px-6 py-20 sm:py-24 text-center">
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
             <p className={`${ACCENT_TEXT} font-mono text-sm mb-2`}>04. WHAT'S NEXT?</p>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-slate-900 dark:text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-slate-900 dark:text-white">
               Let's Work <span className={`grad-anim ${GRAD_TEXT}`}>Together</span>
             </h2>
-            <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-md mx-auto leading-relaxed">
-              Koi project idea hai, collaboration karna hai, ya sirf hello kehna hai?
-              Meri inbox hamesha khuli hai.
+            <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-md mx-auto leading-relaxed text-sm sm:text-base">
+              Got a project idea, want to collaborate, or just want to say hello? My inbox is always open.
             </p>
-            <div className="flex flex-wrap justify-center items-center gap-3 mb-6">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-3 mb-6">
               <motion.a
                 whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.97 }} href={GMAIL} target="_blank" rel="noreferrer"
-                className={`inline-flex items-center gap-2 px-8 py-4 ${BTN}`}
+                className={`inline-flex items-center justify-center gap-2 px-7 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base ${BTN}`}
               >
                 <FaEnvelope /> Say Hello
               </motion.a>
               <button
                 onClick={copyEmail}
-                className="inline-flex items-center gap-2 px-5 py-4 rounded-full border border-slate-300 dark:border-white/20 text-slate-700 dark:text-slate-300 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition text-sm font-medium"
+                className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3.5 sm:py-4 rounded-full border border-slate-300 dark:border-white/20 text-slate-700 dark:text-slate-300 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition text-xs sm:text-sm font-medium max-w-full"
               >
-                {copied ? <FaCheck className="text-emerald-500" /> : <FaCopy />}
-                {copied ? "Copied!" : EMAIL}
+                {copied ? <FaCheck className="text-emerald-500 shrink-0" /> : <FaCopy className="shrink-0" />}
+                <span className="truncate">{copied ? "Copied!" : EMAIL}</span>
               </button>
             </div>
-            <div className="flex justify-center gap-6 text-2xl text-slate-500 dark:text-slate-400 mt-10">
+            <div className="flex justify-center gap-6 text-xl sm:text-2xl text-slate-500 dark:text-slate-400 mt-8 sm:mt-10">
               <a href={GITHUB} target="_blank" rel="noreferrer" aria-label="GitHub" className="hover:text-indigo-600 dark:hover:text-indigo-400 hover:-translate-y-1 transition"><FaGithub /></a>
               <a href={LINKEDIN} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-indigo-600 dark:hover:text-indigo-400 hover:-translate-y-1 transition"><FaLinkedin /></a>
               <a href={GMAIL} target="_blank" rel="noreferrer" aria-label="Email" className="hover:text-indigo-600 dark:hover:text-indigo-400 hover:-translate-y-1 transition"><FaEnvelope /></a>
@@ -547,7 +538,7 @@ export default function App() {
       </div>
 
       {/* FOOTER */}
-      <footer className="relative text-center py-8 border-t border-slate-200 dark:border-white/10 text-slate-500 text-sm">
+      <footer className="relative text-center py-8 px-4 border-t border-slate-200 dark:border-white/10 text-slate-500 text-xs sm:text-sm">
         <p>© {new Date().getFullYear()} Usama Bin Ahmed. Designed & Built with React + Tailwind.</p>
       </footer>
 
@@ -559,7 +550,7 @@ export default function App() {
             exit={{ opacity: 0, scale: 0.5, y: 20 }} whileHover={{ scale: 1.1 }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             aria-label="Back to top"
-            className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full ${GRAD_BG} text-white flex items-center justify-center shadow-xl`}
+            className={`fixed bottom-6 right-4 sm:right-6 z-50 w-11 sm:w-12 h-11 sm:h-12 rounded-full ${GRAD_BG} text-white flex items-center justify-center shadow-xl`}
           >
             <FaArrowUp />
           </motion.button>
